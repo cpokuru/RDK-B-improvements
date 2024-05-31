@@ -1,0 +1,67 @@
+v_secure_system("ip addr flush dev "DOCSIS_INF_NAME);
+
+//---
+
+ubuntu@ubuntu-2204:~/rdk-b-impro/ip-to-c$ ifconfig
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:51:51:43:60  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.64.8  netmask 255.255.255.0  broadcast 192.168.64.255
+        inet6 fe80::5054:ff:fe2a:9d90  prefixlen 64  scopeid 0x20<link>
+        inet6 fd0e:ace1:5f2f:7e44:5054:ff:fe2a:9d90  prefixlen 64  scopeid 0x0<global>
+        ether 52:54:00:2a:9d:90  txqueuelen 1000  (Ethernet)
+        RX packets 711  bytes 64038 (64.0 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 486  bytes 69813 (69.8 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 88  bytes 6772 (6.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 88  bytes 6772 (6.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ubuntu@ubuntu-2204:~/rdk-b-impro/ip-to-c$ 
+ubuntu@ubuntu-2204:~/rdk-b-impro/ip-to-c$ 
+ubuntu@ubuntu-2204:~/rdk-b-impro/ip-to-c$ sudo ./ip 
+IP address of lo: 127.0.0.1
+Before flushing:
+IP addresses on lo flushed.
+After flushing:
+ubuntu@ubuntu-2204:~/rdk-b-impro/ip-to-c$ ifconfig
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:51:51:43:60  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.64.8  netmask 255.255.255.0  broadcast 192.168.64.255
+        inet6 fe80::5054:ff:fe2a:9d90  prefixlen 64  scopeid 0x20<link>
+        inet6 fd0e:ace1:5f2f:7e44:5054:ff:fe2a:9d90  prefixlen 64  scopeid 0x0<global>
+        ether 52:54:00:2a:9d:90  txqueuelen 1000  (Ethernet)
+        RX packets 771  bytes 68590 (68.5 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 531  bytes 76535 (76.5 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 88  bytes 6772 (6.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 88  bytes 6772 (6.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
