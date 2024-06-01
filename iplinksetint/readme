@@ -1,0 +1,68 @@
+v_secure_system("ip link set "DOCSIS_INF_NAME " up");
+
+ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements/iplinksetinf-ifname$ ifconfig -a
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:52:d4:cc:ac  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.64.8  netmask 255.255.255.0  broadcast 192.168.64.255
+        inet6 fd0e:ace1:5f2f:7e44:5054:ff:fe2a:9d90  prefixlen 64  scopeid 0x0<global>
+        inet6 fe80::5054:ff:fe2a:9d90  prefixlen 64  scopeid 0x20<link>
+        ether 52:54:00:2a:9d:90  txqueuelen 1000  (Ethernet)
+        RX packets 13980  bytes 1181926 (1.1 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 9365  bytes 1462875 (1.4 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+loo: flags=8<LOOPBACK>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 104  bytes 8097 (8.0 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 104  bytes 8097 (8.0 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements/iplinksetinf-ifname$ cd ..
+ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements$ mkdir iplinksetint
+ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements$ cd iplinksetint/
+ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements/iplinksetint$ ls
+ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements/iplinksetint$ vi iplinksetint.c
+ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements/iplinksetint$ vi iplinksetint.c
+ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements/iplinksetint$ gcc iplinksetint.c -o iplup
+ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements/iplinksetint$ sudo ./iplup 
+Interface 'loo' brought up successfully.
+ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements/iplinksetint$ ifconfig
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:52:d4:cc:ac  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.64.8  netmask 255.255.255.0  broadcast 192.168.64.255
+        inet6 fd0e:ace1:5f2f:7e44:5054:ff:fe2a:9d90  prefixlen 64  scopeid 0x0<global>
+        inet6 fe80::5054:ff:fe2a:9d90  prefixlen 64  scopeid 0x20<link>
+        ether 52:54:00:2a:9d:90  txqueuelen 1000  (Ethernet)
+        RX packets 14360  bytes 1213566 (1.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 9610  bytes 1507509 (1.5 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+loo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 104  bytes 8097 (8.0 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 104  bytes 8097 (8.0 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements/iplinksetint$ 
+
