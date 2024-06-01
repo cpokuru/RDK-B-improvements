@@ -1,4 +1,8 @@
 
+
+source/TR-181/integration_src.shared/cosa_x_cisco_com_cablemodem_apis.c:359:        v_secure_system("ip -6 addr flush dev "DOCSIS_INF_NAME);
+
+
 lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         inet 127.0.0.1  netmask 255.0.0.0
         inet6 ::1  prefixlen 128  scopeid 0x10<host>
