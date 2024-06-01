@@ -17,7 +17,6 @@ struct in6_ifreq {
     unsigned int ifr6_ifindex;
 };
 
-
 void flush_ipv6_addresses(const char *ifname) {
     int sockfd;
     struct ifaddrs *ifaddr, *ifa;
@@ -46,7 +45,6 @@ void flush_ipv6_addresses(const char *ifname) {
         if (strcmp(ifa->ifa_name, ifname) == 0) {
             // Initialize the in6_ifreq structure
             memset(&ifr6, 0, sizeof(ifr6));
-            ifr6.ifr6_prefixlen = 128;  // Prefix length for a single address
             memcpy(&ifr6.ifr6_addr, &((struct sockaddr_in6 *)ifa->ifa_addr)->sin6_addr, sizeof(struct in6_addr));
 
             // Set the interface index
@@ -56,13 +54,28 @@ void flush_ipv6_addresses(const char *ifname) {
                 continue;
             }
 
-            // Perform the ioctl to delete the IPv6 address
-            if (ioctl(sockfd, SIOCDIFADDR, &ifr6) < 0) {
-                perror("ioctl SIOCDIFADDR");
-            } else {
-                char addr_str[INET6_ADDRSTRLEN];
-                inet_ntop(AF_INET6, &ifr6.ifr6_addr, addr_str, sizeof(addr_str));
-                printf("IPv6 address %s flushed from interface %s\n", addr_str, ifname);
+            // Try to remove the address with typical prefix lengths
+            for (int prefixlen = 128; prefixlen >= 64; prefixlen -= 64) {
+                ifr6.ifr6_prefixlen = prefixlen;
+
+                // Skip trying to remove ::1 with prefix length 64
+                if (IN6_IS_ADDR_LOOPBACK(&ifr6.ifr6_addr) && prefixlen == 64) {
+                    continue;
+                }
+
+                if (ioctl(sockfd, SIOCDIFADDR, &ifr6) == 0) {
+                    char addr_str[INET6_ADDRSTRLEN];
+                    inet_ntop(AF_INET6, &ifr6.ifr6_addr, addr_str, sizeof(addr_str));
+                    printf("IPv6 address %s/%u flushed from interface %s\n", addr_str, ifr6.ifr6_prefixlen, ifname);
+                } else {
+                    // Display "Cannot assign requested address" error only if the address is assigned
+                    if (errno != EADDRNOTAVAIL || IN6_IS_ADDR_UNSPECIFIED(&ifr6.ifr6_addr)) {
+                        char addr_str[INET6_ADDRSTRLEN];
+                        inet_ntop(AF_INET6, &ifr6.ifr6_addr, addr_str, sizeof(addr_str));
+                        fprintf(stderr, "ioctl SIOCDIFADDR: Cannot assign requested address for %s/%u on interface %s: %s\n",
+                                addr_str, ifr6.ifr6_prefixlen, ifname, strerror(errno));
+                    }
+                }
             }
         }
     }

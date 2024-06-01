@@ -40,33 +40,18 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 
 //----------------
 
-ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements/ip6-to-c$ sudo ./ip6 
-ioctl SIOCDIFADDR: Cannot assign requested address
-IPv6 address ::1 flushed from interface lo
-ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements/ip6-to-c$ ifconfig
-docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
-        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
-        ether 02:42:e5:f3:9f:e2  txqueuelen 0  (Ethernet)
-        RX packets 0  bytes 0 (0.0 B)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 0  bytes 0 (0.0 B)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-ens3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.64.8  netmask 255.255.255.0  broadcast 192.168.64.255
-        inet6 fd0e:ace1:5f2f:7e44:5054:ff:fe2a:9d90  prefixlen 64  scopeid 0x0<global>
-        inet6 fe80::5054:ff:fe2a:9d90  prefixlen 64  scopeid 0x20<link>
-        ether 52:54:00:2a:9d:90  txqueuelen 1000  (Ethernet)
-        RX packets 2296  bytes 479319 (479.3 KB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 1586  bytes 250794 (250.7 KB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
+ sudo ./ip6 
+IPv6 address 2001:db8:85a3::8a2e:370:7334/64 flushed from interface lo
+IPv6 address ::1/128 flushed from interface lo
+ubuntu@ubuntu-2204:~/rdk-b-impro/RDK-B-improvements/ip6-to-c$ ifconfig lo
 lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         inet 127.0.0.1  netmask 255.0.0.0
-        inet6 2001:db8:85a3::8a2e:370:7334  prefixlen 64  scopeid 0x0<global>
         loop  txqueuelen 1000  (Local Loopback)
-        RX packets 96  bytes 7541 (7.5 KB)
+        RX packets 84  bytes 6352 (6.3 KB)
         RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 96  bytes 7541 (7.5 KB)
+        TX packets 84  bytes 6352 (6.3 KB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+
